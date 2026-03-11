@@ -1,0 +1,537 @@
+/* ══════════════════════════════════════════
+   ShipShape – Super App Stylesheet
+   ══════════════════════════════════════════ */
+
+/* ── Reset & Base ── */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #f7fafc;
+    color: #1a202c;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* ── Navigation ── */
+nav {
+    background: #ffffff;
+    padding: 20px 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav .logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #0077B6;
+    text-decoration: none;
+    letter-spacing: -0.5px;
+    font-family: 'Outfit', sans-serif;
+}
+
+nav .nav-links {
+    display: flex;
+    gap: 32px;
+}
+
+nav .nav-links a {
+    color: #4a5568;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
+}
+
+nav .nav-links a:hover,
+nav .nav-links a.active {
+    color: #0077B6;
+}
+
+/* ── Hero Section ── */
+.hero {
+    position: relative;
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: url('assets/hero-bg.png') center/cover no-repeat;
+    overflow: hidden;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(0, 30, 60, 0.4) 0%, rgba(0, 15, 30, 0.7) 100%);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    padding: 40px 24px;
+}
+
+.hero h1 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 4rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 24px;
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.hero-tagline {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.95);
+    line-height: 1.6;
+    margin-bottom: 40px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-cta {
+    display: inline-block;
+    padding: 18px 48px;
+    background: #fff;
+    color: #1a202c;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.hero-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+}
+
+/* ── About Section ── */
+.about-section {
+    padding: 100px 0;
+    background: #fff;
+}
+
+.about-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 80px;
+    padding: 0 40px;
+}
+
+.about-image {
+    flex: 1;
+}
+
+.about-image img {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+}
+
+.about-text {
+    flex: 1;
+}
+
+.section-heading-minimal {
+    font-family: 'Outfit', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #1a202c;
+    margin-bottom: 12px;
+}
+
+.section-divider-minimal {
+    border: none;
+    height: 4px;
+    width: 60px;
+    background: #0077B6;
+    margin-bottom: 32px;
+}
+
+.about-features {
+    list-style: none;
+    margin-top: 32px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.about-features li {
+    font-weight: 700;
+    color: #0077B6;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* ── Super App Booking Layout ── */
+.booking-container {
+    max-width: 800px;
+    margin: 60px auto 160px;
+    padding: 0 24px;
+}
+
+.section-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 40px;
+    text-align: left;
+}
+
+.booking-section {
+    margin-bottom: 48px;
+}
+
+.step-title {
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: #718096;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+/* 1. Vessel Grid */
+.vessel-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.vessel-card {
+    background: #fff;
+    border: 2px solid #edf2f7;
+    border-radius: 20px;
+    padding: 24px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.vessel-card img {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+}
+
+.vessel-card span {
+    font-weight: 700;
+    color: #2d3748;
+}
+
+.vessel-card:hover {
+    border-color: #0077B6;
+    transform: translateY(-2px);
+}
+
+.vessel-card.active {
+    border-color: #0077B6;
+    background: rgba(0, 119, 182, 0.05);
+    box-shadow: 0 10px 25px rgba(0, 119, 182, 0.1);
+}
+
+/* 2. Boat Details */
+.input-card {
+    background: #fff;
+    border: 2px solid #edf2f7;
+    border-radius: 20px;
+    padding: 24px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.input-card label {
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.input-card input {
+    width: 100px;
+    padding: 12px;
+    border: 2px solid #edf2f7;
+    border-radius: 12px;
+    font-size: 1.25rem;
+    font-weight: 800;
+    text-align: center;
+    color: #0077B6;
+    outline: none;
+}
+
+/* 3. Service Cards */
+.services-vertical-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.service-card {
+    position: relative;
+    cursor: pointer;
+}
+
+.service-card-label {
+    display: block;
+    cursor: pointer;
+}
+
+.service-card input {
+    position: absolute;
+    opacity: 0;
+}
+
+.service-card-content {
+    background: #fff;
+    border: 2px solid #edf2f7;
+    border-radius: 20px;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    transition: all 0.2s ease;
+}
+
+.service-icon {
+    width: 64px;
+    height: 64px;
+    background: #f7fafc;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.service-icon img {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+}
+
+.service-info {
+    flex: 1;
+}
+
+.service-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.service-tagline {
+    font-size: 0.95rem;
+    color: #718096;
+}
+
+.service-price-wrapper {
+    text-align: right;
+}
+
+.price-val {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #1a202c;
+}
+
+/* Selection State */
+.service-card input:checked+.service-card-content {
+    border-color: #0077B6;
+    background: rgba(0, 119, 182, 0.02);
+}
+
+.service-card input:checked+.service-card-content::after {
+    content: "\2713";
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 28px;
+    height: 28px;
+    background: #0077B6;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    box-shadow: 0 4px 12px rgba(0, 119, 182, 0.3);
+}
+
+/* Sticky Action Bar */
+.sticky-action-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border-top: 1px solid #edf2f7;
+    padding: 24px 80px;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.05);
+}
+
+.price-summary small {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: #718096;
+    letter-spacing: 1px;
+}
+
+.price-summary .total-amount {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: #0077B6;
+    font-family: 'Outfit', sans-serif;
+}
+
+.primary-book-btn {
+    background: #1a202c;
+    color: #fff;
+    border: none;
+    padding: 18px 48px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.primary-book-btn:hover {
+    background: #000;
+    transform: translateY(-2px);
+}
+
+/* Completion Overlay */
+.completion-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    backdrop-filter: blur(8px);
+}
+
+.completion-card {
+    background-color: #ffffff;
+    padding: 60px;
+    border-radius: 40px;
+    text-align: center;
+    max-width: 460px;
+    width: 90%;
+}
+
+.success-icon {
+    width: 100px;
+    height: 100px;
+    background: #ebfbee;
+    color: #2f855a;
+    border-radius: 50%;
+    margin: 0 auto 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+}
+
+.completion-card button {
+    width: 100%;
+    padding: 20px;
+    background: #0077B6;
+    color: white;
+    border: none;
+    border-radius: 16px;
+    font-weight: 700;
+    margin-top: 24px;
+    cursor: pointer;
+}
+
+/* Map Settings */
+body.map-page {
+    height: 100vh;
+    overflow: hidden;
+}
+
+.map-container {
+    height: calc(100vh - 80px);
+    display: flex;
+}
+
+.marina-panel {
+    width: 400px;
+    background: #fff;
+    border-right: 1px solid #edf2f7;
+    overflow-y: auto;
+}
+
+#map {
+    flex: 1;
+}
+
+.marina-list {
+    list-style: none;
+}
+
+.marina-list li {
+    padding: 24px 32px;
+    border-bottom: 1px solid #f7fafc;
+    cursor: pointer;
+}
+
+.marina-list li.active {
+    background: #f0f9ff;
+    border-left: 4px solid #0077B6;
+}
+
+/* Responsive */
+@media (max-width: 1000px) {
+    nav {
+        padding: 20px 40px;
+    }
+
+    .sticky-action-bar {
+        padding: 24px 40px;
+    }
+}
+
+@media (max-width: 600px) {
+    .vessel-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .sticky-action-bar {
+        flex-direction: column;
+        gap: 20px;
+        padding: 24px;
+    }
+
+    .primary-book-btn {
+        width: 100%;
+    }
+}

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="ShipShape Marine Maintenance — book hull cleaning, engine checks, winterization and more for your vessel.">
+    <title>ShipShape — Marine Maintenance Services</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="services.html" class="logo">⚓ ShipShape</a>
+        <div class="nav-links">
+            <a href="services.html" class="active">Home</a>
+            <a href="map.html">Marina Map</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Precision Marine Care</h1>
+            <p class="hero-tagline">Uncompromising maintenance for your vessel. Professional service delivered with
+                precision and passion.</p>
+            <a href="#about" class="hero-cta">Discover More ↓</a>
+        </div>
+    </section>
+
+    <main id="services">
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="about-container">
+                <div class="about-image">
+                    <img src="assets/about-vessel.png" alt="Professional Marine Care">
+                </div>
+                <div class="about-text">
+                    <h2 class="section-heading-minimal">About ShipShape</h2>
+                    <hr class="section-divider-minimal">
+                    <p>ShipShape provides premium marine maintenance for the modern mariner. Our team ensures your
+                        vessel remains in peak condition, season after season.</p>
+                    <ul class="about-features">
+                        <li>Expert Engineering</li>
+                        <li>Eco-Friendly Practices</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="booking-container">
+            <h2 class="section-title">Book Your Service</h2>
+
+            <!-- 1. Vessel Selection -->
+            <div class="booking-section">
+                <h3 class="step-title">1. Select Your Vessel</h3>
+                <div class="vessel-grid">
+                    <div class="vessel-card active" data-vessel="sailboat">
+                        <img src="assets/vessel_icon_sailboat.png" alt="Sailboat">
+                        <span>Sailboat</span>
+                    </div>
+                    <div class="vessel-card" data-vessel="yacht">
+                        <img src="assets/vessel_icon_yacht.png" alt="Yacht">
+                        <span>Yacht</span>
+                    </div>
+                    <div class="vessel-card" data-vessel="jetski">
+                        <img src="assets/vessel_icon_jetski.png" alt="Jet Ski">
+                        <span>Jet Ski</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Boat Details -->
+            <div class="booking-section">
+                <h3 class="step-title">2. Vessel Specifications</h3>
+                <div class="input-card">
+                    <label for="boat-length">Boat Length (ft)</label>
+                    <input type="number" id="boat-length" min="1" max="200" value="25">
+                </div>
+            </div>
+
+            <!-- 3. Service Selection -->
+            <div class="booking-section">
+                <h3 class="step-title">3. Choose Services</h3>
+                <div class="services-vertical-grid" id="service-list">
+                    <!-- Hull Cleaning -->
+                    <div class="service-card" data-vessels="sailboat,yacht,jetski">
+                        <label class="service-card-label">
+                            <input type="checkbox" id="hull" data-type="eco">
+                            <div class="service-card-content">
+                                <div class="service-icon">
+                                    <img src="assets/marine_service_icon_hull_cleaning.png" alt="Hull Cleaning">
+                                </div>
+                                <div class="service-info">
+                                    <div class="service-name">Hull Cleaning</div>
+                                    <div class="service-tagline">Eco-friendly removal of algae and barnacles</div>
+                                </div>
+                                <div class="service-price-wrapper">
+                                    <div class="price-val">$75</div>
+                                    <small class="badge badge-eco">Eco</small>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- Engine Check -->
+                    <div class="service-card" data-vessels="sailboat,yacht">
+                        <label class="service-card-label">
+                            <input type="checkbox" id="engine" data-type="emergency">
+                            <div class="service-card-content">
+                                <div class="service-icon">
+                                    <img src="assets/marine_service_icon_engine_check.png" alt="Engine Check">
+                                </div>
+                                <div class="service-info">
+                                    <div class="service-name">Engine Check</div>
+                                    <div class="service-tagline">Comprehensive diagnostic and fluid check</div>
+                                </div>
+                                <div class="service-price-wrapper">
+                                    <div class="price-val">$90</div>
+                                    <small class="badge badge-emergency">Emergency</small>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- Winterization -->
+                    <div class="service-card" data-vessels="sailboat,yacht">
+                        <label class="service-card-label">
+                            <input type="checkbox" id="winter" data-type="eco">
+                            <div class="service-card-content">
+                                <div class="service-icon">
+                                    <img src="assets/marine_service_icon_winterization.png" alt="Winterization">
+                                </div>
+                                <div class="service-info">
+                                    <div class="service-name">Winterization</div>
+                                    <div class="service-tagline">Storage preparation and freeze protection</div>
+                                </div>
+                                <div class="service-price-wrapper">
+                                    <div class="price-val">$120</div>
+                                    <small class="badge badge-eco">Eco</small>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sticky Bottom Bar -->
+        <div class="sticky-action-bar">
+            <div class="price-summary">
+                <small>ESTIMATED TOTAL</small>
+                <div class="total-amount">$<output id="total-price">75</output></div>
+            </div>
+            <button class="primary-book-btn" id="book-btn">Confirm Booking</button>
+        </div>
+
+        <!-- Confirmation Overlay -->
+        <div class="completion-overlay" id="confirmation">
+            <div class="completion-card">
+                <div class="success-icon">✓</div>
+                <h3>Booking Requested!</h3>
+                <p>We've received your request. A technician will contact you shortly.</p>
+                <button onclick="window.location.reload()">Great, thanks!</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="services.js"></script>
+</body>
+
+</html>

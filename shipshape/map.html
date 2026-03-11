@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="ShipShape — Find the nearest marina with available technicians on our interactive map.">
+    <title>ShipShape — Marine Maintenance Services</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+
+<body class="map-page">
+
+    <!-- Navigation -->
+    <nav>
+        <a href="services.html" class="logo">⚓ ShipShape</a>
+        <div class="nav-links">
+            <a href="services.html">Home</a>
+            <a href="map.html" class="active">Marina Map</a>
+        </div>
+    </nav>
+
+    <!-- Map + List Layout -->
+    <div class="map-container">
+        <!-- Left: Marina List (populated by JS) -->
+        <aside class="marina-panel">
+            <h2>📍 Nearby Marinas</h2>
+            <ul class="marina-list" id="marina-list"></ul>
+        </aside>
+
+        <!-- Right: Leaflet Map -->
+        <div id="map"></div>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- Our map script -->
+    <script src="marina-map.js"></script>
+</body>
+
+</html>
