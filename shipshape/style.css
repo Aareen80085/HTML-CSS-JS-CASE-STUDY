@@ -253,32 +253,57 @@ nav .nav-links a.active {
     box-shadow: 0 10px 25px rgba(0, 119, 182, 0.1);
 }
 
-/* 2. Boat Details */
+/* 2. Boat Details & Plan Selection */
+.input-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
 .input-card {
     background: #fff;
     border: 2px solid #edf2f7;
     border-radius: 20px;
     padding: 24px 32px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.input-card:focus-within {
+    border-color: #0077B6;
+    box-shadow: 0 10px 25px rgba(0, 119, 182, 0.05);
 }
 
 .input-card label {
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 0.85rem;
+    color: #718096;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.input-card input {
-    width: 100px;
-    padding: 12px;
-    border: 2px solid #edf2f7;
-    border-radius: 12px;
+.input-card input,
+.input-card select {
+    width: 100%;
+    padding: 4px 0;
+    border: none;
     font-size: 1.25rem;
     font-weight: 800;
-    text-align: center;
-    color: #0077B6;
+    color: #1a202c;
     outline: none;
+    background: transparent;
+}
+
+.input-card select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%230077B6'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: 1.5rem;
+    padding-right: 2rem;
 }
 
 /* 3. Service Cards */
@@ -378,7 +403,80 @@ nav .nav-links a.active {
     box-shadow: 0 4px 12px rgba(0, 119, 182, 0.3);
 }
 
-/* Sticky Action Bar */
+/* Emergency Surcharge Toggle */
+.surcharge-toggle {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding-right: 24px;
+    border-right: 1px solid #edf2f7;
+}
+
+.surcharge-label {
+    display: flex;
+    flex-direction: column;
+}
+
+.surcharge-label strong {
+    font-size: 0.95rem;
+    color: #e53e3e;
+}
+
+.surcharge-label small {
+    font-size: 0.8rem;
+    color: #718096;
+}
+
+/* Switch Styles */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 28px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background-color: #edf2f7;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+input:checked+.slider {
+    background-color: #e53e3e;
+}
+
+input:checked+.slider:before {
+    transform: translateX(22px);
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
 .sticky-action-bar {
     position: fixed;
     bottom: 0;

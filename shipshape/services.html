@@ -81,10 +81,19 @@
 
             <!-- 2. Boat Details -->
             <div class="booking-section">
-                <h3 class="step-title">2. Vessel Specifications</h3>
-                <div class="input-card">
-                    <label for="boat-length">Boat Length (ft)</label>
-                    <input type="number" id="boat-length" min="1" max="200" value="25">
+                <h3 class="step-title">2. Boat & Plan Details</h3>
+                <div class="input-grid">
+                    <div class="input-card">
+                        <label for="boat-length">Boat Length (ft)</label>
+                        <input type="number" id="boat-length" min="1" max="200" value="25">
+                    </div>
+                    <div class="input-card">
+                        <label for="plan-type">Service Plan</label>
+                        <select id="plan-type">
+                            <option value="one-off">One-off Service</option>
+                            <option value="monthly">Monthly Bundle (20% off)</option>
+                        </select>
+                    </div>
                 </div>
             </div>
 
@@ -157,8 +166,18 @@
 
         <!-- Sticky Bottom Bar -->
         <div class="sticky-action-bar">
+            <div class="surcharge-toggle">
+                <label class="switch">
+                    <input type="checkbox" id="emergency-toggle">
+                    <span class="slider round"></span>
+                </label>
+                <div class="surcharge-label">
+                    <strong>On-Water Emergency</strong>
+                    <small>+$150 Priority Response</small>
+                </div>
+            </div>
             <div class="price-summary">
-                <small>ESTIMATED TOTAL</small>
+                <small id="price-label">ESTIMATED TOTAL</small>
                 <div class="total-amount">$<output id="total-price">75</output></div>
             </div>
             <button class="primary-book-btn" id="book-btn">Confirm Booking</button>
