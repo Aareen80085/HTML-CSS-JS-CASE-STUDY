@@ -33,8 +33,8 @@ for (var i = 0; i < marinas.length; i++) {
 
     // Create a new List Item (<li>) for the sidebar
     var listItem = document.createElement('li');
-    listItem.innerHTML = '<div class="marina-name">⚓ ' + currentMarina.name + '</div>' +
-        '<div class="marina-techs">🔧 ' + currentMarina.techs + ' technicians available</div>';
+    listItem.innerHTML = '<div class="marina-name"><strong>' + currentMarina.name + '</strong></div>' +
+        '<div class="marina-techs text-sm text-gray-500">' + currentMarina.techs + ' technicians available</div>';
 
     // Save the connection: defined what happens when the user clicks a list item
     // I used a separate function to keep things clean
@@ -45,8 +45,14 @@ for (var i = 0; i < marinas.length; i++) {
 }
 
 // --- 4. Function to handle clicking a list item ---
+// Keep track of selected marina globally
+var selectedMarina = null; // Default to null enforcing strict selection
+
 function setupListClick(item, mapMarker, data) {
+    // Note: We no longer auto-select a marina right on page load. User must explicitly click one.
+
     item.onclick = function () {
+        selectedMarina = data.name; // update local context
         // A. Move the map camera to the marina
         map.setView([data.lat, data.lng], 13);
 
@@ -59,5 +65,8 @@ function setupListClick(item, mapMarker, data) {
             allItems[j].classList.remove('active');
         }
         item.classList.add('active');
+        
+        // Update total engine recalculations just in case location specific fees were added
+        if(typeof calculateTotal === 'function') { calculateTotal(); }
     };
 }

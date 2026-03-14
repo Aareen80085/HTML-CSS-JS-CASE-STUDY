@@ -9,10 +9,10 @@
     <title>ShipShape — Marine Maintenance Services</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 
 <body>
@@ -22,7 +22,7 @@
         <a href="services.html" class="logo">⚓ ShipShape</a>
         <div class="nav-links">
             <a href="services.html" class="active">Home</a>
-            <a href="map.html">Marina Map</a>
+            <a href="login.html">Login</a>
         </div>
     </nav>
 
@@ -57,8 +57,16 @@
             </div>
         </section>
 
-        <section class="booking-container">
+        <section class="booking-container" id="booking-container">
             <h2 class="section-title">Book Your Service</h2>
+
+            <!-- Progress Tracker -->
+            <div class="progress-tracker">
+                <div class="progress-step active" data-step="0">1. Vessel</div>
+                <div class="progress-step" data-step="1">2. Location</div>
+                <div class="progress-step" data-step="2">3. Details</div>
+                <div class="progress-step" data-step="3">4. Services</div>
+            </div>
 
             <!-- 1. Vessel Selection -->
             <div class="booking-section">
@@ -79,7 +87,18 @@
                 </div>
             </div>
 
-            <!-- 2. Boat Details -->
+            <!-- 2. Location Selection (Map) -->
+            <div class="booking-section">
+                <h3 class="step-title">2. Select Marina Location</h3>
+                <div class="map-container-inline">
+                    <aside class="marina-panel">
+                        <ul class="marina-list" id="marina-list"></ul>
+                    </aside>
+                    <div id="map"></div>
+                </div>
+            </div>
+
+            <!-- 3. Boat Details -->
             <div class="booking-section">
                 <h3 class="step-title">2. Boat & Plan Details</h3>
                 <div class="input-grid">
@@ -97,9 +116,9 @@
                 </div>
             </div>
 
-            <!-- 3. Service Selection -->
+            <!-- 4. Service Selection -->
             <div class="booking-section">
-                <h3 class="step-title">3. Choose Services</h3>
+                <h3 class="step-title">4. Choose Services</h3>
                 <div class="services-vertical-grid" id="service-list">
                     <!-- Hull Cleaning -->
                     <div class="service-card" data-vessels="sailboat,yacht,jetski">
@@ -185,15 +204,26 @@
 
         <!-- Confirmation Overlay -->
         <div class="completion-overlay" id="confirmation">
-            <div class="completion-card">
+            <div class="completion-card receipt-card">
                 <div class="success-icon">✓</div>
-                <h3>Booking Requested!</h3>
-                <p>We've received your request. A technician will contact you shortly.</p>
-                <button onclick="window.location.reload()">Great, thanks!</button>
+                <h3>Booking Confirmed!</h3>
+                <p>Thank you for choosing ShipShape. Your receipt is below.</p>
+                
+                <div class="receipt-details" id="receipt-details">
+                    <!-- Populated dynamically -->
+                </div>
+
+                <div style="display: flex; gap: 16px;">
+                    <button id="close-receipt-btn" style="flex: 1; padding: 20px; background: #0077B6; color: white; border: none; border-radius: 16px; font-weight: 700; cursor: pointer; margin-top: 24px;">Close Receipt</button>
+                    <button onclick="window.print()" style="flex: 1; padding: 20px; background: #edf2f7; color: #1a202c; border: none; border-radius: 16px; font-weight: 700; cursor: pointer; margin-top: 24px;">Print</button>
+                </div>
             </div>
         </div>
     </main>
 
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="marina-map.js"></script>
     <script src="services.js"></script>
 </body>
 
