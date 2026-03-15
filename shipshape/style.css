@@ -878,3 +878,55 @@ input:checked+.slider:before {
     text-decoration: none;
     font-weight: 700;
 }
+
+/* ── Footer ── */
+.site-footer {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid #90e0ef;
+    padding: 60px 80px 40px;
+    margin-top: 40px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    max-width: 1100px;
+    margin: 0 auto 40px;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 250px;
+}
+
+.footer-section h4 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.4rem;
+    color: #005f73;
+    margin-bottom: 20px;
+    font-weight: 800;
+}
+
+.footer-section p {
+    color: #023e8a;
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 24px;
+    border-top: 1px solid #90e0ef;
+    color: #0077b6;
+    font-size: 0.85rem;
+}
+
+/* Add extra padding on pages with a sticky action bar (like services.html) 
+   so the site-footer can be fully scrolled into view without being hidden */
+body:not(.login-page) .site-footer {
+    padding-bottom: 140px;
+}

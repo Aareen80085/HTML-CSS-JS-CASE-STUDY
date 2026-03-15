@@ -1,7 +1,7 @@
 // --- 1. Get all the elements from the page ---
-var allVesselCards = document.querySelectorAll('.vessel-card');
-var allServiceCards = document.querySelectorAll('.service-card');
-var allCheckboxes = document.querySelectorAll('.service-card input');
+var boatCards = document.querySelectorAll('.vessel-card');
+var serviceCards = document.querySelectorAll('.service-card');
+var serviceCheckboxes = document.querySelectorAll('.service-card input');
 var lengthInput = document.getElementById('boat-length');
 var planSelect = document.getElementById('plan-type');
 var emergencyToggle = document.getElementById('emergency-toggle');
@@ -16,34 +16,34 @@ const EMERGENCY_FEE = 150.00;
 const MONTHLY_DISCOUNT = 0.20; // 20% off
 
 // This variable remembers which boat is currently picked
-var currentBoat = "sailboat";
+var chosenBoat = "sailboat";
 
 // --- 2. Function to handle clicking a boat card ---
 function selectVessel(event) {
-    for (var i = 0; i < allVesselCards.length; i++) {
-        allVesselCards[i].classList.remove('active');
+    for (var i = 0; i < boatCards.length; i++) {
+        boatCards[i].classList.remove('active');
     }
 
     var clickedCard = event.currentTarget;
     clickedCard.classList.add('active');
-    currentBoat = clickedCard.getAttribute('data-vessel');
+    chosenBoat = clickedCard.getAttribute('data-vessel');
 
-    filterTheList();
-    calculateTotal();
+    hideInvalidServices();
+    updatePrice();
 }
 
 // Attach the click event to each card
-for (var a = 0; a < allVesselCards.length; a++) {
-    allVesselCards[a].onclick = selectVessel;
+for (var a = 0; a < boatCards.length; a++) {
+    boatCards[a].onclick = selectVessel;
 }
 
 // --- 3. Function to show/hide services based on the boat ---
-function filterTheList() {
-    for (var i = 0; i < allServiceCards.length; i++) {
-        var card = allServiceCards[i];
+function hideInvalidServices() {
+    for (var i = 0; i < serviceCards.length; i++) {
+        var card = serviceCards[i];
         var allowedVessels = card.getAttribute('data-vessels');
 
-        if (allowedVessels.includes(currentBoat)) {
+        if (allowedVessels.includes(chosenBoat)) {
             card.style.display = "block";
         } else {
             card.style.display = "none";
@@ -54,15 +54,15 @@ function filterTheList() {
 }
 
 // --- 4. Function to calculate the money ---
-function calculateTotal() {
+function updatePrice() {
     var boatLength = parseInt(lengthInput.value) || 0;
 
     // A. Length-based pricing
     let price = boatLength * PER_FOOT_RATE;
 
     // B. Service costs
-    for (var j = 0; j < allCheckboxes.length; j++) {
-        var box = allCheckboxes[j];
+    for (var j = 0; j < serviceCheckboxes.length; j++) {
+        var box = serviceCheckboxes[j];
 
         if (box.checked) {
             // Get base price from the card itself
@@ -101,46 +101,46 @@ function calculateTotal() {
 // --- 5. Booking Action & Receipt ---
 bookBtn.onclick = function () {
     if (!selectedMarina) {
-        alert("Please select a Marina Location before booking.");
+        alert("Please select a Marina Location before booking-container.");
         // Scroll the user back up to the map
         document.querySelector('.map-container-inline').scrollIntoView({ behavior: 'smooth', block: 'center' });
         return;
     }
 
     if (!sessionStorage.getItem('shipshape_loggedIn')) {
-        saveBookingState();
+        saveProgress();
         sessionStorage.setItem('shipshape_pendingBooking', 'true');
         window.location.href = 'login.html';
         return;
     }
-    showReceipt();
+    displayInvoice();
 };
 
 document.getElementById('close-receipt-btn').onclick = function() {
     confirmation.style.display = "none";
 };
 
-function saveBookingState() {
+function saveProgress() {
     const state = {
-        boat: currentBoat,
+        boat: chosenBoat,
         length: lengthInput.value,
         plan: planSelect.value,
         emergency: emergencyToggle.checked,
         marina: typeof selectedMarina !== 'undefined' ? selectedMarina : "Unknown Marina",
         services: []
     };
-    for (let cb of allCheckboxes) {
+    for (let cb of serviceCheckboxes) {
         if (cb.checked) state.services.push(cb.id);
     }
     sessionStorage.setItem('shipshape_bookingState', JSON.stringify(state));
 }
 
-function restoreBookingState() {
+function loadProgress() {
     const stateStr = sessionStorage.getItem('shipshape_bookingState');
     if (!stateStr) return;
     const state = JSON.parse(stateStr);
     
-    currentBoat = state.boat;
+    chosenBoat = state.boat;
     lengthInput.value = state.length;
     planSelect.value = state.plan;
     emergencyToggle.checked = state.emergency;
@@ -148,23 +148,23 @@ function restoreBookingState() {
         selectedMarina = state.marina;
     }
     
-    for (let c of allVesselCards) {
+    for (let c of boatCards) {
         c.classList.remove('active');
         if (c.getAttribute('data-vessel') === state.boat) {
             c.classList.add('active');
         }
     }
     
-    filterTheList(); 
+    hideInvalidServices(); 
     
-    for (let cb of allCheckboxes) {
+    for (let cb of serviceCheckboxes) {
         if (state.services.includes(cb.id)) {
             cb.checked = true;
         }
     }
 }
 
-function showReceipt() {
+function displayInvoice() {
     const email = sessionStorage.getItem('shipshape_email') || 'Guest';
     let boatLength = parseInt(lengthInput.value) || 0;
     let serviceItemsHTML = '';
@@ -177,8 +177,8 @@ function showReceipt() {
         </div>
     `;
 
-    for (let j = 0; j < allCheckboxes.length; j++) {
-        let box = allCheckboxes[j];
+    for (let j = 0; j < serviceCheckboxes.length; j++) {
+        let box = serviceCheckboxes[j];
         if (box.checked) {
             const card = box.closest('.service-card');
             const name = card.querySelector('.service-name').innerText;
@@ -218,7 +218,7 @@ function showReceipt() {
         </div>
         <div class="receipt-item">
             <strong>Vessel:</strong>
-            <span style="text-transform: capitalize;">${currentBoat}</span>
+            <span style="text-transform: capitalize;">${chosenBoat}</span>
         </div>
         <div class="receipt-item">
             <strong>Location:</strong>
@@ -241,22 +241,22 @@ function showReceipt() {
 }
 
 // Listeners
-for (var k = 0; k < allCheckboxes.length; k++) {
-    allCheckboxes[k].onchange = calculateTotal;
+for (var k = 0; k < serviceCheckboxes.length; k++) {
+    serviceCheckboxes[k].onchange = updatePrice;
 }
-lengthInput.oninput = calculateTotal;
-planSelect.onchange = calculateTotal;
-emergencyToggle.onchange = calculateTotal;
+lengthInput.oninput = updatePrice;
+planSelect.onchange = updatePrice;
+emergencyToggle.onchange = updatePrice;
 
 // Run these once at the start
-restoreBookingState();
-filterTheList();
-calculateTotal();
+loadProgress();
+hideInvalidServices();
+updatePrice();
 
 // Check if returning from login
 if (sessionStorage.getItem('shipshape_pendingBooking') === 'true' && sessionStorage.getItem('shipshape_loggedIn')) {
     sessionStorage.removeItem('shipshape_pendingBooking');
-    setTimeout(showReceipt, 100);
+    setTimeout(displayInvoice, 100);
 }
 
 // Update nav dynamically
