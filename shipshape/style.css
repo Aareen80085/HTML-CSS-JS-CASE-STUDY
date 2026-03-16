@@ -822,7 +822,8 @@ input:checked+.slider:before {
 }
 
 .login-form input[type="email"],
-.login-form input[type="password"] {
+.login-form input[type="password"],
+.login-form input[type="text"] {
     width: 100%;
     padding: 16px;
     border: 2px solid #90e0ef;
@@ -834,7 +835,8 @@ input:checked+.slider:before {
 }
 
 .login-form input[type="email"]:focus,
-.login-form input[type="password"]:focus {
+.login-form input[type="password"]:focus,
+.login-form input[type="text"]:focus {
     border-color: #0096c7;
     outline: none;
     box-shadow: 0 0 0 3px rgba(0, 150, 199, 0.1);

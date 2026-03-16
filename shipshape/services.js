@@ -108,19 +108,44 @@ bookBtn.onclick = function () {
     }
 
     if (!sessionStorage.getItem('shipshape_loggedIn')) {
-        saveProgress();
+        saveBookingState();
         sessionStorage.setItem('shipshape_pendingBooking', 'true');
         window.location.href = 'login.html';
         return;
     }
-    displayInvoice();
+    showPaymentOverlay();
+};
+
+function showPaymentOverlay() {
+    document.getElementById('payment-total').innerText = totalPriceText.innerText;
+    document.getElementById('payment-overlay').style.display = "flex";
+}
+
+document.getElementById('cancel-payment-btn').onclick = function() {
+    document.getElementById('payment-overlay').style.display = "none";
+};
+
+document.getElementById('payment-form').onsubmit = function(e) {
+    e.preventDefault();
+    const payBtn = document.getElementById('pay-now-btn');
+    const originalText = payBtn.innerText;
+    payBtn.innerText = "Processing...";
+    payBtn.disabled = true;
+
+    // Simulate transaction
+    setTimeout(() => {
+        payBtn.innerText = originalText;
+        payBtn.disabled = false;
+        document.getElementById('payment-overlay').style.display = "none";
+        showReceipt(); 
+    }, 1500); 
 };
 
 document.getElementById('close-receipt-btn').onclick = function() {
     confirmation.style.display = "none";
 };
 
-function saveProgress() {
+function saveBookingState() {
     const state = {
         boat: chosenBoat,
         length: lengthInput.value,
@@ -164,7 +189,7 @@ function loadProgress() {
     }
 }
 
-function displayInvoice() {
+function showReceipt() {
     const email = sessionStorage.getItem('shipshape_email') || 'Guest';
     let boatLength = parseInt(lengthInput.value) || 0;
     let serviceItemsHTML = '';
@@ -256,7 +281,7 @@ updatePrice();
 // Check if returning from login
 if (sessionStorage.getItem('shipshape_pendingBooking') === 'true' && sessionStorage.getItem('shipshape_loggedIn')) {
     sessionStorage.removeItem('shipshape_pendingBooking');
-    setTimeout(displayInvoice, 100);
+    setTimeout(showPaymentOverlay, 100);
 }
 
 // Update nav dynamically

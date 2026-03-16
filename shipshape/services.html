@@ -202,11 +202,41 @@
             <button class="primary-book-btn" id="book-btn">Confirm Booking</button>
         </div>
 
+        <!-- Payment Overlay -->
+        <div class="completion-overlay" id="payment-overlay">
+            <div class="completion-card">
+                <h3>Complete Transaction</h3>
+                <p>Please enter your mock payment details to finalize the booking.</p>
+                <form id="payment-form" class="login-form" style="text-align: left; margin-top: 24px;">
+                    <div class="form-group">
+                        <label>Cardholder Name</label>
+                        <input type="text" placeholder="John Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Card Number</label>
+                        <input type="text" placeholder="•••• •••• •••• ••••" required>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                        <div class="form-group">
+                            <label>Expiry</label>
+                            <input type="text" placeholder="MM/YY" required>
+                        </div>
+                        <div class="form-group">
+                            <label>CVC</label>
+                            <input type="password" placeholder="123" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="primary-book-btn" id="pay-now-btn" style="margin-top: 16px;">Pay $<span id="payment-total">0.00</span></button>
+                    <button type="button" id="cancel-payment-btn" style="width: 100%; padding: 16px; background: transparent; color: #0077b6; border: none; font-weight: 700; cursor: pointer; margin-top: 8px;">Cancel</button>
+                </form>
+            </div>
+        </div>
+
         <!-- Confirmation Overlay -->
         <div class="completion-overlay" id="confirmation">
             <div class="completion-card receipt-card">
                 <div class="success-icon">✓</div>
-                <h3>Booking Confirmed!</h3>
+                <h3>Payment Successful!</h3>
                 <p>Thank you for choosing ShipShape. Your receipt is below.</p>
                 
                 <div class="receipt-details" id="receipt-details">
